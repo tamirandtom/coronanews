@@ -5,12 +5,33 @@
     <title>חדשות הקורונה</title>
     <meta name="viewport" content="width=device-width">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://www.google.com/jsapi"></script>
+
+    <meta property="og:title" content="חדשות הקורונה" />
+    <meta property="og:url" content="/" />
+    <meta property="og:image" content="http://ia.media-imdb.com/images/rock.jpg" />
+    
+    
 </head>
 
   <body>
       <script>
+        var getParams = function (url) {
+	var params = {};
+	var parser = document.createElement('a');
+	parser.href = url;
+	var query = parser.search.substring(1);
+	var vars = query.split('&');
+	for (var i = 0; i < vars.length; i++) {
+		var pair = vars[i].split('=');
+		params[pair[0]] = decodeURIComponent(pair[1]);
+	}
+	return params;
+};
+
+
+
         $(document).ready(function() {
+
     var p1 = ["פאניקה",
 "שמחה",
 "בהלה",
@@ -81,12 +102,35 @@
 "בת מצוות"
 ];
 
+var websites = ['ynet.co.il','mako.co.il','haaretz.co.il','israelhayom.co.il'];
+var f= ['0.jpg','1.png','2.jpg','3.jpg','5.jpg','6.jpg','7.jpg','8.jpg','9.jpg','10.jpg','11.jpg','12.jpg','13.jpg','14.jpg','15.jpg']
 
-var f= ['0.jpg','1.png','2.jpg','3.jpg','5.jpg','6.jpg','7.jpg','8.jpg','9.jpg','10.jpg','11.jpg','12.jpg','13.jph','14.jpg','15.jpg']
-    var currquotes = p1[Math.floor( Math.random() * p1.length )] +" "+ p2[Math.floor( Math.random() * p2.length )] +" "+ p3[Math.floor( Math.random() * p3.length )] +" "+ p4[Math.floor( Math.random() * p4.length )] + " הקורונה"
+
+
+var allParams = getParams(window.location.href);
+var p1Param = allParams.p1 || Math.floor( Math.random() * p1.length )
+var p2Param = allParams.p2 || Math.floor( Math.random() * p2.length )
+var p3Param = allParams.p3 || Math.floor( Math.random() * p3.length )
+var p4Param = allParams.p4 || Math.floor( Math.random() * p4.length )
+
+
+var currsite = allParams.s || Math.floor( Math.random() * websites.length);
+var currquotes = p1[p1Param] +" "+ p2[p2Param] +" "+ p3[p3Param] +" "+ p4[p4Param] + " הקורונה";
+var currHour = allParams.h || Math.floor( Math.random() * 10 + 1 );
+var currImg = allParams.img || f[Math.floor( Math.random() * f.length )];
+
+window.history.replaceState(null, null, "?p1="+p1Param+"&p2="+p2Param+"&p3="+p3Param+"&p4="+p4Param+"&img="+currImg+"&h="+currHour+"&s="+currsite);
+
+
+$('meta[property=og\\:image]').attr('content', '/'+currImg);
+$('meta[property=og\\:title]').attr('content', currquotes);
+
+    $('.link-website').text( websites[currsite] );
     $('.container-title').text( currquotes );
+    $('.link-time').text( " • לפני "+ currHour +" שעות" );
 
-    $('.container-img').css('background-image',"url('img/" + f[Math.floor( Math.random() * f.length )] + "')");
+    $('.container-img').css('background-image',"url('img/" + currImg + "')");
+    $('.cont-favicon').css('background-image',"url('fav/" + currsite + ".png')");
 
 });
 
@@ -167,6 +211,9 @@ border-radius: 10px;
                     <div class="link-time"> • לפני 4 שעות</div>
             </div>
         </div>
+
+        <a href="/">כותרת אחרת</a>
+
       </div>
     </main>
 
