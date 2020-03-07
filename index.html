@@ -122,7 +122,8 @@ var currImg = allParams.img || f[Math.floor( Math.random() * f.length )];
 window.history.replaceState(null, null, "?p1="+p1Param+"&p2="+p2Param+"&p3="+p3Param+"&p4="+p4Param+"&img="+currImg+"&h="+currHour+"&s="+currsite);
 
 
-$('meta[property=og\\:image]').attr('content', '/'+currImg);
+$('meta[property=og\\:image]').attr('content', window.location.href + '/'+currImg);
+$('meta[property=og\\:url]').attr('content', window.location.href);
 $('meta[property=og\\:title]').attr('content', currquotes);
 
     $('.link-website').text( websites[currsite] );
