@@ -82,38 +82,12 @@
 ];
 
 
-
+var f= ['0.jpg','1.png','2.jpg','3.jpg','5.jpg','6.jpg','7.jpg','8.jpg','9.jpg','10.jpg','11.jpg','12.jpg','13.jph','14.jpg','15.jpg']
     var currquotes = p1[Math.floor( Math.random() * p1.length )] +" "+ p2[Math.floor( Math.random() * p2.length )] +" "+ p3[Math.floor( Math.random() * p3.length )] +" "+ p4[Math.floor( Math.random() * p4.length )] + " הקורונה"
     $('.container-title').text( currquotes );
 
+    $('.container-img').css('background-image',"url('img/" + f[Math.floor( Math.random() * f.length )] + "')");
 
-google.load('search', '1');
-    google.setOnLoadCallback(OnLoad);
-    var search;
-
-    //i suggest instead of this to make keywords list so first to pick random keyword than to do search and pick random image
-    var keyword = currquotes;
-
-    function OnLoad()
-    {
-        search = new google.search.ImageSearch();
-
-        search.setSearchCompleteCallback(this, searchComplete, null);
-
-        search.execute(keyword);
-    }
-
-    function searchComplete()
-    {
-        if (search.results && search.results.length > 0)
-        {
-            
-            $('.container-img').css('background-image',"url('" + search.results[0]['url'] + "')");
-
-        }
-    }
-
-    
 });
 
 
