@@ -8,8 +8,8 @@
     <meta property="og:type"          content="website" />
     <meta property="og:description"   content="ידיעות מרחבי הרשת בנושא הקורונה" />
     <meta property="og:title" content="חדשות הקורונה" />
-    <meta property="og:url" content="/" />
-    <meta property="og:image" content="https://tamirandtom.github.io/coronanews/img/1.jpg" />
+    <meta property="og:url" content="http://hacorona.today/" />
+    <meta property="og:image" content="http://hacorona.today/img/3.jpg" />
     
     
 </head>
@@ -120,7 +120,7 @@ var currquotes = p1[p1Param] +" "+ p2[p2Param] +" "+ p3[p3Param] +" "+ p4[p4Para
 var currHour = allParams.h || Math.floor( Math.random() * 10 + 1 );
 var currImg = allParams.img || f[Math.floor( Math.random() * f.length )];
 
-window.history.replaceState(null, null, "?p1="+p1Param+"&p2="+p2Param+"&p3="+p3Param+"&p4="+p4Param+"&img="+currImg+"&h="+currHour+"&s="+currsite);
+// window.history.replaceState(null, null, "?p1="+p1Param+"&p2="+p2Param+"&p3="+p3Param+"&p4="+p4Param+"&img="+currImg+"&h="+currHour+"&s="+currsite);
 
 
 $('meta[property=og\\:image]').attr('content', window.location.href + '/'+currImg);
@@ -130,6 +130,12 @@ $('meta[property=og\\:title]').attr('content', currquotes);
     $('.link-website').text( websites[currsite] );
     $('.container-title').text( currquotes );
     $('.link-time').text( " • לפני "+ currHour +" שעות" );
+
+
+    $('.fblink').attr("href","https://www.facebook.com/sharer/sharer.php?u=http://hacorona.today/?p1="+p1Param+"&p2="+p2Param+"&p3="+p3Param+"&p4="+p4Param+"&img="+currImg+"&h="+currHour+"&s="+currsite);
+
+    
+
 
     $('.container-img').css('background-image',"url('img/" + currImg + "')");
     $('.cont-favicon').css('background-image',"url('fav/" + currsite + ".png')");
@@ -220,7 +226,7 @@ border-radius: 10px;
 
         <div style="text-align: center;margin-top: 32px;">
           <a href="https://tamirandtom.github.io/coronanews/">כותרת אחרת</a> • 
-          <a href="https://www.facebook.com/sharer/sharer.php?u=https://tamirandtom.github.io/coronanews/">שתף בפייסוש</a> 
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://tamirandtom.github.io/coronanews/" class="fblink">שתף בפייסוש</a> 
 
         </div>
         <div style="text-align: center;margin-top: 32px;">
